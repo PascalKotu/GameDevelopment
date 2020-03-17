@@ -45,6 +45,11 @@ public class PlayerMovement : MonoBehaviour {
             currentAttack = (currentAttack + 1) % attacks;
             
         }
+
+        if (Input.GetButtonDown("Fire2") && !animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack")) {
+            //starts the attack animation
+            animator.SetTrigger("Range");
+        }
         //set other essential variables needed by the state machine
         animator.SetBool("Grounded", grounded);
         animator.SetFloat("Vertical", rb.velocity.y);
