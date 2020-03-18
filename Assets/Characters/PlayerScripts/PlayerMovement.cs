@@ -19,7 +19,10 @@ public class PlayerMovement : MonoBehaviour {
     //needed for different attack animations
     [SerializeField] int attacks = 2;
     int currentAttack = 0;
-    
+    [SerializeField] int dmg = 1;
+    [SerializeField] Transform arrowSpawn = default;
+    [SerializeField] GameObject arrow = default;
+
 
     void Start() {
         //get all needed components
@@ -100,6 +103,18 @@ public class PlayerMovement : MonoBehaviour {
             } else {
                 grounded = false;
             }
+        }
+    }
+
+    void SpawnArrow() {
+        GameObject x = Instantiate(arrow, arrowSpawn.position, Quaternion.identity);
+        //let the arrow face into the right direction
+        x.transform.localScale = transform.GetChild(0).localScale;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision) {
+        if(collision.tag == "Enemy") {
+            GameEvents.enemyHit.Invoke(new HitData(transform, collision.gameObject, dmg));
         }
     }
 }
