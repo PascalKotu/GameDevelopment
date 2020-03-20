@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class ButtonFunctions : MonoBehaviour {
     [SerializeField] GameObject gameOverScreen = default;
+    [SerializeField] AudioClip gameOvermusic = default;
     void Start() {
         GameEvents.PlayerDead.AddListener(OnPlayerDead);
     }
@@ -15,6 +16,8 @@ public class ButtonFunctions : MonoBehaviour {
     }
 
     void EnableGameOver() {
+        GameEvents.PlayMusic.Invoke(new AudioEventData(gameOvermusic, 1f));
+        GameEvents.ToggleMusicLoop.Invoke();
         gameOverScreen.SetActive(true);
     }
 

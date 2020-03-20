@@ -8,7 +8,7 @@ public class Arrow : MonoBehaviour {
     Rigidbody2D rb = default;
     void Start() {
         rb = GetComponent<Rigidbody2D>();
-        rb.velocity = new Vector2(transform.localScale.x, 0) * 10f;
+        rb.velocity = new Vector2(transform.localScale.x, 0) * speed;
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {

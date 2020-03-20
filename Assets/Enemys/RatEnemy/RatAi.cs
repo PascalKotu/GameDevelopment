@@ -28,7 +28,7 @@ public class RatAi : MonoBehaviour {
 
         rb = GetComponent<Rigidbody2D>();
         //rat will run to the left at start
-        rb.velocity = Vector2.left * speed;
+        rb.velocity = new Vector2(-1 * speed, rb.velocity.y);
 
         animator = GetComponent<Animator>();
     }
@@ -46,10 +46,10 @@ public class RatAi : MonoBehaviour {
         } else {
             //apply forward motion
             if (transform.position.x >= maxX) {
-                rb.velocity = Vector2.left * speed;
+                rb.velocity = new Vector2(-1 * speed, rb.velocity.y);
                 sprite.localScale = Vector3.one;
             } else if (transform.position.x <= minX) {
-                rb.velocity = Vector2.right * speed;
+                rb.velocity = new Vector2(speed, rb.velocity.y);
                 sprite.localScale = new Vector3(-1f, 1f, 1f);
             }
         }

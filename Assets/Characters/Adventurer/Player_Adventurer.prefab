@@ -147,12 +147,31 @@ MonoBehaviour:
   speed: 5
   jumpSpeed: 6
   jumpHeigt: 500
+  fallGravity: 3
+  jumpGravity: 3
   groundOffset: 1.5
   attacks: 3
   dmg: 1
   arrowSpawn: {fileID: 5832812291889251418}
   arrow: {fileID: 8993699168031466543, guid: 98a9385b8dc9b7743adbb6a092bd9cd8, type: 3}
   hitMaterial: {fileID: 2100000, guid: 1843f2cbce63de74b9645f68c8116f02, type: 2}
+  jumpSounds:
+  - {fileID: 8300000, guid: d4836d0fce8135a4891401c648df47df, type: 3}
+  - {fileID: 8300000, guid: 29b23c883b85741458fcef9ea0be7e36, type: 3}
+  attackSounds:
+  - {fileID: 8300000, guid: 4bc6bebb3e8518449bf3e244a1881628, type: 3}
+  - {fileID: 8300000, guid: 1fcb733baec67b94b8929ec4366e18d8, type: 3}
+  - {fileID: 8300000, guid: b04aec739e0fab347b1d5ffdf12eaca3, type: 3}
+  bowSounds:
+  - {fileID: 8300000, guid: d6bd5cab1b08ed342864a39cbaa758a5, type: 3}
+  hitSounds:
+  - {fileID: 8300000, guid: 0952bc001f55e17439bc033de9aa11a4, type: 3}
+  - {fileID: 8300000, guid: 46f01d2a2edbe3d46a8997654aebda0a, type: 3}
+  - {fileID: 8300000, guid: 607ea11c4b981a443932e0d463ac0362, type: 3}
+  deathSounds:
+  - {fileID: 8300000, guid: 79fe3c5b5d4418449824c70482d226ee, type: 3}
+  - {fileID: 8300000, guid: 1676770279b8ca649a3de1df951e78cb, type: 3}
+  - {fileID: 8300000, guid: 9c33536e11312bf419673e0c3dfdbb3e, type: 3}
 --- !u!114 &2677277248997248632
 MonoBehaviour:
   m_ObjectHideFlags: 0

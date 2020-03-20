@@ -215,7 +215,16 @@ MonoBehaviour:
   maxHp: 3
   despawnEffect: {fileID: 6340091531510408377, guid: 899c99ea2c859c643b136e904fde1866,
     type: 3}
-  currentHp: 0
+  drops:
+  - {fileID: 3394956264110263155, guid: deaa37ebfd600264bbf6d2c3fc8d1519, type: 3}
+  hitSounds:
+  - {fileID: 8300000, guid: dcb522d76234f714aa9d85234f360c5e, type: 3}
+  - {fileID: 8300000, guid: 3109313368b20bd49906ea30744a828b, type: 3}
+  - {fileID: 8300000, guid: b27d6deb9467c4847ad8da30cb15bb15, type: 3}
+  deathSounds:
+  - {fileID: 8300000, guid: d198839681fc883458ee5f96737b8220, type: 3}
+  - {fileID: 8300000, guid: 73a36cd5e2394e640a55ddd88f441671, type: 3}
+  - {fileID: 8300000, guid: 44be74db66445fb4d96141241b7d8ee0, type: 3}
 --- !u!114 &8054660878409629091
 MonoBehaviour:
   m_ObjectHideFlags: 0

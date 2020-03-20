@@ -12,8 +12,12 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] float speed = 5f;
     float movingDirection = 0;
 
+    float waitTimeForPlatforms = 0.5f;
+
     [SerializeField] float jumpSpeed = 7f;
     [SerializeField] float jumpHeigt = 100f;
+    [SerializeField] float fallGravity = 2.5f;
+    [SerializeField] float jumpGravity = 2f;
     bool jump = false;
     bool grounded = false;
     //needed to fine tune the ground-detection
@@ -29,6 +33,11 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] Material hitMaterial = default;
     Material defaultMaterial = default;
 
+    [SerializeField] List<AudioClip> jumpSounds = new List<AudioClip>();
+    [SerializeField] List<AudioClip> attackSounds = new List<AudioClip>();
+    [SerializeField] List<AudioClip> bowSounds = new List<AudioClip>();
+    [SerializeField] List<AudioClip> hitSounds = new List<AudioClip>();
+    [SerializeField] List<AudioClip> deathSounds = new List<AudioClip>();
 
     void Start() {
         //get all needed components
@@ -64,8 +73,20 @@ public class PlayerMovement : MonoBehaviour {
         if (jump) {
             rb.velocity = Vector3.zero;
             rb.AddForce(Vector2.up * jumpHeigt);
+            GameEvents.PlaySound.Invoke(new AudioEventData(jumpSounds[Random.Range(0, jumpSounds.Count)], 0.2f));
             jump = false;
         }
+
+        if(rb.velocity.y < 0) {
+            //gives the fall more impact
+            rb.gravityScale = fallGravity;
+        }else if (rb.velocity.y > 0 && !Input.GetButton("Jump")) {
+            //allows high and low jumps
+            rb.gravityScale = jumpGravity;
+        } else {
+            rb.gravityScale = 1f;
+        }
+
 
         //Player moves at different speeds whether he is grounded or not
         if (grounded) {
@@ -110,30 +131,44 @@ public class PlayerMovement : MonoBehaviour {
             jump = true;
         }
         //player can attack if no attack-animation is playing
+        //sword
         if (Input.GetButtonDown("Fire1") && !animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack")) {
             //starts the attack animation
             animator.SetTrigger("Attack");
-
+            
             //calculates which animation should play
             animator.SetFloat("AttackAnimation", (float)currentAttack / (float)(attacks - 1));
             currentAttack = (currentAttack + 1) % attacks;
 
         }
-
+        //bow
         if (Input.GetButtonDown("Fire2") && !animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack")) {
             //starts the attack animation
             animator.SetTrigger("Range");
+        }
+
+        if(Input.GetAxis("Vertical") < 0 && grounded) {
+            waitTimeForPlatforms -= Time.deltaTime;
+            if(waitTimeForPlatforms <= 0) {
+                GameEvents.PlatformPass.Invoke();
+            }
+        } else {
+            waitTimeForPlatforms = 0.5f;
         }
     }
 
     void SpawnArrow() {
         GameObject x = Instantiate(arrow, arrowSpawn.position, Quaternion.identity);
+        GameEvents.PlaySound.Invoke(new AudioEventData(bowSounds[Random.Range(0,bowSounds.Count)], 0.7f));
         //let the arrow face into the right direction
         x.transform.localScale = transform.GetChild(0).localScale;
     }
 
     void GotHit(HitData hitData) {
         //apply the hit effects
+        if (!isDead) {
+            GameEvents.PlaySound.Invoke(new AudioEventData(hitSounds[Random.Range(0, hitSounds.Count)], 0.7f));
+        }
         sprite.material = hitMaterial;
         Invoke("ResetHit", 0.2f);
     }
@@ -143,10 +178,15 @@ public class PlayerMovement : MonoBehaviour {
         sprite.material = defaultMaterial;
     }
 
+    void PlayAttackSound() {
+        GameEvents.PlaySound.Invoke(new AudioEventData(attackSounds[currentAttack % attacks], 0.7f));
+    }
+
     void SetDead() {
         //play death animation and disable any character movement
         if (!isDead) {
             isDead = true;
+            GameEvents.PlaySound.Invoke(new AudioEventData(deathSounds[Random.Range(0, deathSounds.Count)], 0.7f));
             rb.velocity = Vector3.zero;
             animator.SetTrigger("Dead");
         }

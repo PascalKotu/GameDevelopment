@@ -8,11 +8,27 @@ public static class GameEvents {
     public static HitEvent PlayerHit = new HitEvent();
     public static CameraShakeEvent CameraShake = new CameraShakeEvent();
     public static UnityEvent PlayerDead = new UnityEvent();
+    public static UnityEvent PlatformPass = new UnityEvent();
+    public static AudioEvent PlaySound = new AudioEvent();
+    public static AudioEvent PlayMusic = new AudioEvent();
+    public static UnityEvent ToggleMusicLoop = new UnityEvent();
 }   
    
 public class HitEvent : UnityEvent<HitData> { }
 
 public class CameraShakeEvent : UnityEvent<float> { }
+
+public class AudioEvent : UnityEvent<AudioEventData> { }
+
+public class AudioEventData {
+    public AudioClip clip;
+    public float volume;
+
+    public AudioEventData(AudioClip clip, float volume) {
+        this.clip = clip;
+        this.volume = volume;
+    }
+}
 
 public class HitData {
     public Transform hitPosition;

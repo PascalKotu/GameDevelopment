@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraFollow : MonoBehaviour {
-    [SerializeField] Transform target;
+    [SerializeField] Transform target = default;
     [SerializeField] float smoothing = 5f;
 
     void Start() {
