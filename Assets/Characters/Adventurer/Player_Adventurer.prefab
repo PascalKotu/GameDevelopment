@@ -152,6 +152,7 @@ MonoBehaviour:
   dmg: 1
   arrowSpawn: {fileID: 5832812291889251418}
   arrow: {fileID: 8993699168031466543, guid: 98a9385b8dc9b7743adbb6a092bd9cd8, type: 3}
+  hitMaterial: {fileID: 2100000, guid: 1843f2cbce63de74b9645f68c8116f02, type: 2}
 --- !u!114 &2677277248997248632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,6 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4301aee99324e584b9391f07cee2e0d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthbar: {fileID: 0}
   maxHp: 5
 --- !u!1 &8843433079430084774
 GameObject:

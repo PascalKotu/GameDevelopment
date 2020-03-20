@@ -5,6 +5,9 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour {
     Rigidbody2D rb = default;
     Animator animator = default;
+    SpriteRenderer sprite = default;
+
+    bool isDead = false;
 
     [SerializeField] float speed = 5f;
     float movingDirection = 0;
@@ -23,36 +26,27 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] Transform arrowSpawn = default;
     [SerializeField] GameObject arrow = default;
 
+    [SerializeField] Material hitMaterial = default;
+    Material defaultMaterial = default;
+
 
     void Start() {
         //get all needed components
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        sprite = transform.GetChild(0).GetComponent<SpriteRenderer>();
+        defaultMaterial = sprite.material;
+        GameEvents.PlayerDead.AddListener(SetDead);
+        GameEvents.PlayerHit.AddListener(GotHit);
     }
 
 
     void Update() {
         CheckGrounded();
-
-        //player can jump if he is standing on the ground and if no attack-animation is playing
-        if (Input.GetButtonDown("Jump") && grounded && !animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack")) {
-            jump = true;
-        }
-        //player can attack if no attack-animation is playing
-        if (Input.GetButtonDown("Fire1") && !animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack")) {
-            //starts the attack animation
-            animator.SetTrigger("Attack");
-
-            //calculates which animation should play
-            animator.SetFloat("AttackAnimation", (float)currentAttack/(float)(attacks - 1));
-            currentAttack = (currentAttack + 1) % attacks;
-            
+        if (!isDead) {
+            ProcessInput();
         }
 
-        if (Input.GetButtonDown("Fire2") && !animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack")) {
-            //starts the attack animation
-            animator.SetTrigger("Range");
-        }
         //set other essential variables needed by the state machine
         animator.SetBool("Grounded", grounded);
         animator.SetFloat("Vertical", rb.velocity.y);
@@ -60,7 +54,11 @@ public class PlayerMovement : MonoBehaviour {
     
     private void FixedUpdate() {
         //get the direction the player is moving in
-        movingDirection = Input.GetAxisRaw("Horizontal");
+        if (!isDead) {
+            movingDirection = Input.GetAxisRaw("Horizontal");
+        } else {
+            movingDirection = 0;
+        }
 
         //if player pressd jump since last FixedUpdate call
         if (jump) {
@@ -106,15 +104,58 @@ public class PlayerMovement : MonoBehaviour {
         }
     }
 
+    void ProcessInput() {
+        //player can jump if he is standing on the ground and if no attack-animation is playing
+        if (Input.GetButtonDown("Jump") && grounded && !animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack")) {
+            jump = true;
+        }
+        //player can attack if no attack-animation is playing
+        if (Input.GetButtonDown("Fire1") && !animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack")) {
+            //starts the attack animation
+            animator.SetTrigger("Attack");
+
+            //calculates which animation should play
+            animator.SetFloat("AttackAnimation", (float)currentAttack / (float)(attacks - 1));
+            currentAttack = (currentAttack + 1) % attacks;
+
+        }
+
+        if (Input.GetButtonDown("Fire2") && !animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack")) {
+            //starts the attack animation
+            animator.SetTrigger("Range");
+        }
+    }
+
     void SpawnArrow() {
         GameObject x = Instantiate(arrow, arrowSpawn.position, Quaternion.identity);
         //let the arrow face into the right direction
         x.transform.localScale = transform.GetChild(0).localScale;
     }
 
+    void GotHit(HitData hitData) {
+        //apply the hit effects
+        sprite.material = hitMaterial;
+        Invoke("ResetHit", 0.2f);
+    }
+
+    void ResetHit() {
+        //revert the hit effects
+        sprite.material = defaultMaterial;
+    }
+
+    void SetDead() {
+        //play death animation and disable any character movement
+        if (!isDead) {
+            isDead = true;
+            rb.velocity = Vector3.zero;
+            animator.SetTrigger("Dead");
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision) {
         if(collision.tag == "Enemy") {
             GameEvents.enemyHit.Invoke(new HitData(transform, collision.gameObject, dmg));
+            GameEvents.CameraShake.Invoke(0.1f);
         }
     }
 }
