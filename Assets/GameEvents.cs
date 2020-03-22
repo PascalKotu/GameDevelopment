@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 public static class GameEvents {
     public static HitEvent enemyHit = new HitEvent();
+    public static HitEvent EnemyDead = new HitEvent();
     public static HitEvent PlayerHit = new HitEvent();
     public static CameraShakeEvent CameraShake = new CameraShakeEvent();
     public static UnityEvent PlayerDead = new UnityEvent();
@@ -12,6 +13,7 @@ public static class GameEvents {
     public static AudioEvent PlaySound = new AudioEvent();
     public static AudioEvent PlayMusic = new AudioEvent();
     public static UnityEvent ToggleMusicLoop = new UnityEvent();
+    public static UnityEvent PickUpCoin = new UnityEvent();
 }   
    
 public class HitEvent : UnityEvent<HitData> { }

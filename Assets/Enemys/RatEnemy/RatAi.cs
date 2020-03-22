@@ -19,7 +19,7 @@ public class RatAi : MonoBehaviour {
     Rigidbody2D rb = default;
     Animator animator = default;
     bool hit = false;
-
+    float direction = 1f;
     
     void Start() {
         GameEvents.enemyHit.AddListener(HitEffect);
@@ -27,8 +27,6 @@ public class RatAi : MonoBehaviour {
         sprite = transform.GetChild(0);
 
         rb = GetComponent<Rigidbody2D>();
-        //rat will run to the left at start
-        rb.velocity = new Vector2(-1 * speed, rb.velocity.y);
 
         animator = GetComponent<Animator>();
     }
@@ -46,12 +44,12 @@ public class RatAi : MonoBehaviour {
         } else {
             //apply forward motion
             if (transform.position.x >= maxX) {
-                rb.velocity = new Vector2(-1 * speed, rb.velocity.y);
-                sprite.localScale = Vector3.one;
+                direction = -1f;
             } else if (transform.position.x <= minX) {
-                rb.velocity = new Vector2(speed, rb.velocity.y);
-                sprite.localScale = new Vector3(-1f, 1f, 1f);
+                direction = 1f;
             }
+            rb.velocity = new Vector2(direction * speed, rb.velocity.y);
+            sprite.localScale = new Vector3(-1 * direction, 1, 1);
         }
 
     }

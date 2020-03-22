@@ -6,6 +6,7 @@ public class EnemyHealth : MonoBehaviour {
     [SerializeField] int maxHp = 3;
     int currentHp = 0;
 
+    [SerializeField] float volumeHit = 1f;
     [SerializeField] GameObject despawnEffect = default;
     [SerializeField] List<GameObject> drops = new List<GameObject>();
     [SerializeField] List<AudioClip> hitSounds = new List<AudioClip>();
@@ -25,11 +26,12 @@ public class EnemyHealth : MonoBehaviour {
         //is called via enemyHit-Event
         if (hitData.hitted == gameObject ) {
             currentHp -= hitData.dmg;
-            GameEvents.PlaySound.Invoke(new AudioEventData(hitSounds[Random.Range(0, hitSounds.Count)], 1f));
+            GameEvents.PlaySound.Invoke(new AudioEventData(hitSounds[Random.Range(0, hitSounds.Count)], volumeHit));
             if (currentHp <= 0) {
                 //gets the position of the object that hitted this one
                 hitPosition = hitData.hitPosition.position;
                 animator.SetTrigger("Dead");
+                GameEvents.EnemyDead.Invoke(hitData);
             }
         }
     }
@@ -44,7 +46,7 @@ public class EnemyHealth : MonoBehaviour {
         Instantiate(despawnEffect, transform.position, Quaternion.FromToRotation(transform.up, (Vector2)transform.position- hitPosition));
 
         //play sound
-        GameEvents.PlaySound.Invoke(new AudioEventData(deathSounds[Random.Range(0, deathSounds.Count)], 1f));
+        GameEvents.PlaySound.Invoke(new AudioEventData(deathSounds[Random.Range(0, deathSounds.Count)], volumeHit));
 
         Destroy(gameObject);
     }
