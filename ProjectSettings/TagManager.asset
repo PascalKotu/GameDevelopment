@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - PlayerWeapon
   - EnemyWeapon
+  - Trader
+  - Speech
   layers:
   - Default
   - TransparentFX
