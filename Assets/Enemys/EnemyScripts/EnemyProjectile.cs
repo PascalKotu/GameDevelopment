@@ -8,7 +8,7 @@ public class EnemyProjectile : MonoBehaviour {
     Rigidbody2D rb = default;
     void Start() {
         rb = GetComponent<Rigidbody2D>();
-        rb.velocity = new Vector2(-transform.localScale.x, 0) * speed;
+        rb.velocity = transform.right * -1 *speed;
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {

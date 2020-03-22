@@ -30,8 +30,9 @@ public class EnemyHealth : MonoBehaviour {
             if (currentHp <= 0) {
                 //gets the position of the object that hitted this one
                 hitPosition = hitData.hitPosition.position;
-                animator.SetTrigger("Dead");
+
                 GameEvents.EnemyDead.Invoke(hitData);
+                animator.SetTrigger("Dead");
             }
         }
     }
@@ -49,5 +50,9 @@ public class EnemyHealth : MonoBehaviour {
         GameEvents.PlaySound.Invoke(new AudioEventData(deathSounds[Random.Range(0, deathSounds.Count)], volumeHit));
 
         Destroy(gameObject);
+    }
+
+    public int GetMaxHP() {
+        return maxHp;
     }
 }

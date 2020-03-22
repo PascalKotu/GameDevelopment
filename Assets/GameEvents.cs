@@ -14,6 +14,7 @@ public static class GameEvents {
     public static AudioEvent PlayMusic = new AudioEvent();
     public static UnityEvent ToggleMusicLoop = new UnityEvent();
     public static UnityEvent PickUpCoin = new UnityEvent();
+    public static UnityEvent BossStart = new UnityEvent();
 }   
    
 public class HitEvent : UnityEvent<HitData> { }

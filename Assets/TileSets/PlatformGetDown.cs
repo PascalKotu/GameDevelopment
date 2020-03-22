@@ -11,7 +11,7 @@ public class PlatformGetDown : MonoBehaviour {
     void ChangeRotation() {
         //set the layer of the platform to one the play does not collide with
         gameObject.layer = 2;
-        Invoke("ResetRotation", 0.5f);
+        Invoke("ResetRotation", 0.3f);
     }
 
     void ResetRotation() {

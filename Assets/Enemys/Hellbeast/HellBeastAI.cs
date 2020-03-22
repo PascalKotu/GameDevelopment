@@ -62,7 +62,7 @@ public class HellBeastAI : MonoBehaviour {
     void SpawnFireBall() {
         GameEvents.PlaySound.Invoke(new AudioEventData(attack1[Random.Range(0, attack1.Count)], 1f));
         GameObject x = Instantiate(projectile, transform.position, Quaternion.identity);
-        x.transform.localScale = sprite.transform.localScale;
+        x.transform.rotation = Quaternion.FromToRotation(x.transform.right, (Vector2)transform.position - new Vector2(target.position.x, transform.position.y));
         x.GetComponent<EnemyProjectile>().setDmg(dmgAttack1);
     }
 
