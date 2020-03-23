@@ -141,7 +141,7 @@ MonoBehaviour:
   jumpGravity: 3
   groundOffset: 1.5
   attacks: 3
-  dmg: 1
+  playerStats: {fileID: 11400000, guid: e0f0b85db058d3640a1ed66d870523b0, type: 2}
   arrowSpawn: {fileID: 5832812291889251418}
   arrow: {fileID: 8993699168031466543, guid: 98a9385b8dc9b7743adbb6a092bd9cd8, type: 3}
   hitMaterial: {fileID: 2100000, guid: 1843f2cbce63de74b9645f68c8116f02, type: 2}
@@ -175,7 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthbar: {fileID: 0}
-  maxHp: 5
+  playerStats: {fileID: 11400000, guid: e0f0b85db058d3640a1ed66d870523b0, type: 2}
 --- !u!1 &8843433079430084774
 GameObject:
   m_ObjectHideFlags: 0

@@ -144,4 +144,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 25
-  dmg: 2
+  playerStats: {fileID: 11400000, guid: e0f0b85db058d3640a1ed66d870523b0, type: 2}

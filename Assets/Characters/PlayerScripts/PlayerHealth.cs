@@ -5,12 +5,14 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour {
     [SerializeField] Image healthbar = default;
-    [SerializeField] int maxHp = 5;
+    [SerializeField] PlayerStats playerStats = default;
+    int maxHp = 0;
     int currentHp = 0;
     bool dead = false;
 
     void Start() {
         GameEvents.PlayerHit.AddListener(GetHit);
+        maxHp = playerStats.maxHealth;
         currentHp = maxHp;
         healthbar.fillAmount = currentHp / maxHp;
     }

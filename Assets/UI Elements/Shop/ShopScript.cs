@@ -6,12 +6,11 @@ using UnityEngine.UI;
 
 public class ShopScript : MonoBehaviour
 {
-    [SerializeField] PlayerStats playerStats;
-    [SerializeField] ShopStatistics shopStats;
-    [SerializeField] AudioClip buySFX, errorSFX;
-    [SerializeField] AudioSource audioSource;
+    [SerializeField] PlayerStats playerStats = default;
+    [SerializeField] ShopStatistics shopStats = default;
+    [SerializeField] AudioClip buySFX = default, errorSFX = default;
 
-    [SerializeField] TMP_Text costHealthTxt, costMeleeTxt, costRangedTxt, costMaxMunitionsTxt, costMunitionsTxt;
+    [SerializeField] TMP_Text costHealthTxt = default, costMeleeTxt = default, costRangedTxt = default, costMaxMunitionsTxt = default, costMunitionsTxt = default;
  
     int baseCostHealth, baseCostMelee, baseCostRange, baseCostMaxMunitions, costMunitions;
     int costHealth, costMelee, costRange, CostMaxMunitions;
@@ -69,7 +68,7 @@ public class ShopScript : MonoBehaviour
         {
             playerStats.maxMunition += 3;
             shopStats.maxMunitionUpgradeCount++;
-
+            GameEvents.ChangeMunition.Invoke(0);
             CalcNewCosts();
             SetTextFields();
 
@@ -77,14 +76,17 @@ public class ShopScript : MonoBehaviour
     }
     public void BuyMunitions()
     {
-        if (PayUpgrade(costMunitions, 0))
-        {
-            if (playerStats.munition < playerStats.maxMunition)
-                playerStats.munition += 2;
-            else audioSource.PlayOneShot(errorSFX);
+        if (playerStats.munition < playerStats.maxMunition) {
+            if (PayUpgrade(costMunitions, 0)) {
+                GameEvents.ChangeMunition.Invoke(1);
+            }
+        } else {
+            GameEvents.PlaySound.Invoke(new AudioEventData(errorSFX, 1f));
         }
-            
-       
+        
+
+
+
     }
 
     bool PayUpgrade(int baseCost, int upgradeLevel)
@@ -93,14 +95,13 @@ public class ShopScript : MonoBehaviour
 
         if(cost > playerStats.money)
         {
-            audioSource.PlayOneShot(errorSFX);
+            GameEvents.PlaySound.Invoke(new AudioEventData(errorSFX, 1f));
             return false;
         }
+        
+        GameEvents.ChangeMoney.Invoke(-cost);
 
-        //TODO live update money UI
-        playerStats.money -= cost;
-
-        audioSource.PlayOneShot(buySFX);
+        GameEvents.PlaySound.Invoke(new AudioEventData(buySFX, 1f));
 
         return true;
     }
@@ -129,9 +130,9 @@ public class ShopScript : MonoBehaviour
     public void ResetScriptables()
     {
         playerStats.maxHealth = 5;
-        playerStats.money = 100;
-        playerStats.rangedDamage = 1;
-        playerStats.meleeDamage = 2;
+        playerStats.money = 0;
+        playerStats.rangedDamage = 2;
+        playerStats.meleeDamage = 1;
         playerStats.maxMunition = 3;
         playerStats.munition = 0;
 
@@ -140,6 +141,8 @@ public class ShopScript : MonoBehaviour
         shopStats.rangedDamageUpgradeCount = 0;
         shopStats.maxMunitionUpgradeCount = 0;
 
+        GameEvents.ChangeMoney.Invoke(0);
+        GameEvents.ChangeMunition.Invoke(0);
         CalcNewCosts();
         SetTextFields();
     }

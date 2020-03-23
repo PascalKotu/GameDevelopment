@@ -29,7 +29,7 @@ public class Coin : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D collision) {
         if(collision.tag == "Player") {
             GameEvents.PlaySound.Invoke(new AudioEventData(collectSounds[Random.Range(0, collectSounds.Count)],1f));
-            GameEvents.PickUpCoin.Invoke();
+            GameEvents.ChangeMoney.Invoke(1);
             Destroy(gameObject);
         }
     }

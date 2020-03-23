@@ -13,13 +13,16 @@ public static class GameEvents {
     public static AudioEvent PlaySound = new AudioEvent();
     public static AudioEvent PlayMusic = new AudioEvent();
     public static UnityEvent ToggleMusicLoop = new UnityEvent();
-    public static UnityEvent PickUpCoin = new UnityEvent();
+    public static IntEvent ChangeMoney = new IntEvent();
+    public static IntEvent ChangeMunition = new IntEvent();
     public static UnityEvent BossStart = new UnityEvent();
 }   
    
 public class HitEvent : UnityEvent<HitData> { }
 
 public class CameraShakeEvent : UnityEvent<float> { }
+
+public class IntEvent : UnityEvent<int> { }
 
 public class AudioEvent : UnityEvent<AudioEventData> { }
 

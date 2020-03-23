@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class PortalScript : MonoBehaviour
 {
 
-    [SerializeField] int targetScene;
+    [SerializeField] int targetScene = default;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +22,8 @@ public class PortalScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        SceneManager.LoadScene(targetScene);
+        if(collision.tag == "Player") {
+            SceneManager.LoadScene(targetScene);
+        }
     }
 }

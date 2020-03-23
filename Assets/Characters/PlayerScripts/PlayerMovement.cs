@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerMovement : MonoBehaviour {
     Rigidbody2D rb = default;
@@ -26,9 +27,14 @@ public class PlayerMovement : MonoBehaviour {
     //needed for different attack animations
     [SerializeField] int attacks = 2;
     int currentAttack = 0;
-    [SerializeField] int dmg = 1;
+
+
+    [SerializeField] PlayerStats playerStats = default;
     [SerializeField] Transform arrowSpawn = default;
     [SerializeField] GameObject arrow = default;
+    int dmg = 1;
+    int maxMunition = 3;
+    int currentMunition = 0;
 
     [SerializeField] Material hitMaterial = default;
     Material defaultMaterial = default;
@@ -47,6 +53,9 @@ public class PlayerMovement : MonoBehaviour {
         defaultMaterial = sprite.material;
         GameEvents.PlayerDead.AddListener(SetDead);
         GameEvents.PlayerHit.AddListener(GotHit);
+        dmg = playerStats.meleeDamage;
+        maxMunition = playerStats.maxMunition;
+        currentMunition = playerStats.munition;
     }
 
 
@@ -132,7 +141,7 @@ public class PlayerMovement : MonoBehaviour {
         }
         //player can attack if no attack-animation is playing
         //sword
-        if (Input.GetButtonDown("Fire1") && !animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack")) {
+        if (Input.GetButtonDown("Fire1") && !animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack") && !IsMouseOverUI()) {
             //starts the attack animation
             animator.SetTrigger("Attack");
             
@@ -142,7 +151,7 @@ public class PlayerMovement : MonoBehaviour {
 
         }
         //bow
-        if (Input.GetButtonDown("Fire2") && !animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack")) {
+        if (Input.GetButtonDown("Fire2") && !animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack") && !IsMouseOverUI()) {
             //starts the attack animation
             animator.SetTrigger("Range");
         }
@@ -158,10 +167,32 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     void SpawnArrow() {
-        GameObject x = Instantiate(arrow, arrowSpawn.position, Quaternion.identity);
-        GameEvents.PlaySound.Invoke(new AudioEventData(bowSounds[Random.Range(0,bowSounds.Count)], 0.7f));
-        //let the arrow face into the right direction
-        x.transform.localScale = transform.GetChild(0).localScale;
+        if(currentMunition > 0) {
+            GameObject x = Instantiate(arrow, arrowSpawn.position, Quaternion.identity);
+            GameEvents.PlaySound.Invoke(new AudioEventData(bowSounds[Random.Range(0, bowSounds.Count)], 0.7f));
+            //let the arrow face into the right direction
+            x.transform.localScale = transform.GetChild(0).localScale;
+            GameEvents.ChangeMunition.Invoke(-1);
+            currentMunition -= 1;
+        }
+        
+    }
+
+    bool IsMouseOverUI() {
+        PointerEventData pointerEventData = new PointerEventData(EventSystem.current);
+        pointerEventData.position = Input.mousePosition;
+        
+        List<RaycastResult> raycastResults = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(pointerEventData, raycastResults);
+        if(raycastResults.Count > 0) {
+            for (int i = 0; i < raycastResults.Count; i++) {
+                if (raycastResults[i].gameObject.tag == "NoClickTrough") {
+                    return true;
+                }
+            }
+        }
+        
+        return false;
     }
 
     void GotHit(HitData hitData) {

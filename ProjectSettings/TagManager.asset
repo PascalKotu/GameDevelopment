@@ -10,6 +10,7 @@ TagManager:
   - EnemyWeapon
   - Trader
   - Speech
+  - NoClickTrough
   layers:
   - Default
   - TransparentFX

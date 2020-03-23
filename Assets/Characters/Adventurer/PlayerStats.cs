@@ -5,8 +5,8 @@ using UnityEngine;
 [CreateAssetMenu]
 public class PlayerStats : ScriptableObject
 {
-    [SerializeField] public int money;
-    [SerializeField] public int meleeDamage, rangedDamage;
-    [SerializeField] public int maxHealth;
-    [SerializeField] public int munition, maxMunition;
+    public int money;
+    public int meleeDamage, rangedDamage;
+    public int maxHealth;
+    public int munition, maxMunition;
 }

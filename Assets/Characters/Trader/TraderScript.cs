@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class TraderScript : MonoBehaviour
 {
-    [SerializeField] GameObject shop;
-    [SerializeField] AudioSource effectsManager; 
-    [SerializeField] AudioClip shopOpenSFX;
-    GameObject speechBubble;
+    [SerializeField] GameObject shop = default;
+    [SerializeField] AudioClip shopOpenSFX = default;
+    GameObject speechBubble = default;
     bool showSpeechBubble = false, interactable = false;
     
     // Start is called before the first frame update
@@ -47,7 +46,7 @@ public class TraderScript : MonoBehaviour
 
     void ToggleShop()
     {
-        effectsManager.PlayOneShot(shopOpenSFX);
+        GameEvents.PlaySound.Invoke(new AudioEventData(shopOpenSFX, 1f));
         shop.SetActive(!shop.activeSelf);
     }
 

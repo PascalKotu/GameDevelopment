@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class Arrow : MonoBehaviour {
     [SerializeField] float speed = 15f;
-    [SerializeField] int dmg = 2;
+    [SerializeField] PlayerStats playerStats = default;
+    int dmg = 2;
     Rigidbody2D rb = default;
     void Start() {
+        dmg = playerStats.rangedDamage;
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = new Vector2(transform.localScale.x, 0) * speed;
     }
