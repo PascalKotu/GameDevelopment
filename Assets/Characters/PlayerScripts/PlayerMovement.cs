@@ -12,8 +12,7 @@ public class PlayerMovement : MonoBehaviour {
 
     [SerializeField] float speed = 5f;
     float movingDirection = 0;
-
-    float waitTimeForPlatforms = 0.5f;
+    
 
     [SerializeField] float jumpSpeed = 7f;
     [SerializeField] float jumpHeigt = 100f;
@@ -156,13 +155,8 @@ public class PlayerMovement : MonoBehaviour {
             animator.SetTrigger("Range");
         }
 
-        if(Input.GetAxis("Vertical") < 0 && grounded) {
-            waitTimeForPlatforms -= Time.deltaTime;
-            if(waitTimeForPlatforms <= 0) {
-                GameEvents.PlatformPass.Invoke();
-            }
-        } else {
-            waitTimeForPlatforms = 0.5f;
+        if (Input.GetAxis("Vertical") < 0 && grounded && !animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack")) {
+            GameEvents.PlatformPass.Invoke();
         }
     }
 
