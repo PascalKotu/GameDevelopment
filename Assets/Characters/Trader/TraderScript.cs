@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class TraderScript : MonoBehaviour
 {
+
+    [SerializeField] PlayerStats playerStats = default;
+    [SerializeField] ShopStatistics shopStatistics = default;
     [SerializeField] GameObject shop = default;
     [SerializeField] AudioClip shopOpenSFX = default;
     GameObject speechBubble = default;
@@ -38,6 +41,8 @@ public class TraderScript : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            
+
             speechBubble.SetActive(false);
             interactable = false;
             shop.SetActive(false);
@@ -46,6 +51,7 @@ public class TraderScript : MonoBehaviour
 
     void ToggleShop()
     {
+        
         GameEvents.PlaySound.Invoke(new AudioEventData(shopOpenSFX, 1f));
         shop.SetActive(!shop.activeSelf);
     }

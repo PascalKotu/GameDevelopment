@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu]
 public class ShopStatistics : ScriptableObject
 {
-    [SerializeField] public int meleeDamageUpgradeCount, rangedDamageUpgradeCount;
-    [SerializeField] public int maxHealthUpgradeCount;
-    [SerializeField] public int munitionUpgradeCount, maxMunitionUpgradeCount;
+    public int meleeDamageUpgradeCount, rangedDamageUpgradeCount;
+    public int maxHealthUpgradeCount;
+    public int munitionUpgradeCount, maxMunitionUpgradeCount;
 }

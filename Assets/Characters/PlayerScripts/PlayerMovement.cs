@@ -12,14 +12,15 @@ public class PlayerMovement : MonoBehaviour {
 
     [SerializeField] float speed = 5f;
     float movingDirection = 0;
-    
 
+    [SerializeField] GameObject jumpParticles = default;
     [SerializeField] float jumpSpeed = 7f;
     [SerializeField] float jumpHeigt = 100f;
     [SerializeField] float fallGravity = 2.5f;
     [SerializeField] float jumpGravity = 2f;
     bool jump = false;
     bool grounded = false;
+    float timeSincejump = 0f;
     //needed to fine tune the ground-detection
     [SerializeField] float groundOffset = 2f;
 
@@ -64,6 +65,9 @@ public class PlayerMovement : MonoBehaviour {
             ProcessInput();
         }
 
+        if (!grounded) {
+            timeSincejump += Time.deltaTime;
+        }
         //set other essential variables needed by the state machine
         animator.SetBool("Grounded", grounded);
         animator.SetFloat("Vertical", rb.velocity.y);
@@ -82,6 +86,7 @@ public class PlayerMovement : MonoBehaviour {
             rb.velocity = Vector3.zero;
             rb.AddForce(Vector2.up * jumpHeigt);
             GameEvents.PlaySound.Invoke(new AudioEventData(jumpSounds[Random.Range(0, jumpSounds.Count)], 0.2f));
+            Instantiate(jumpParticles, new Vector2(transform.position.x, transform.position.y-1f), Quaternion.identity);
             jump = false;
         }
 
@@ -221,6 +226,17 @@ public class PlayerMovement : MonoBehaviour {
         if(collision.tag == "Enemy") {
             GameEvents.enemyHit.Invoke(new HitData(transform, collision.gameObject, dmg));
             GameEvents.CameraShake.Invoke(0.1f);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision) {
+        if(collision.gameObject.tag == "Ground") {
+            if(timeSincejump > 0.5f) {
+                Instantiate(jumpParticles, new Vector2(transform.position.x, transform.position.y - 1f), Quaternion.identity);
+                timeSincejump = 0f;
+            } else {
+                timeSincejump = 0f;
+            }
         }
     }
 }

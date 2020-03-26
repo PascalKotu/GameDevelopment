@@ -14538,6 +14538,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 978696842, guid: 7c4bff016956b024ea68ae17ec5e3535, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6140757811544164728, guid: 7c4bff016956b024ea68ae17ec5e3535,
         type: 3}
       propertyPath: m_RootOrder
@@ -18764,12 +18768,12 @@ PrefabInstance:
     - target: {fileID: 8843433078993237361, guid: f28cad4bf5019e4489e9c84b1a5cdc81,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.62
+      value: -2.2
       objectReference: {fileID: 0}
     - target: {fileID: 8843433078993237361, guid: f28cad4bf5019e4489e9c84b1a5cdc81,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.18
+      value: 2.08
       objectReference: {fileID: 0}
     - target: {fileID: 8843433078993237361, guid: f28cad4bf5019e4489e9c84b1a5cdc81,
         type: 3}
@@ -22134,7 +22138,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 938828475, guid: f940a8f1e7a83384dab428c19ae0d926, type: 3}
       propertyPath: targetScene
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 938828476, guid: f940a8f1e7a83384dab428c19ae0d926, type: 3}
       propertyPath: m_Offset.y

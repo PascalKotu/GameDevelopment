@@ -40,7 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8843433078993237361}
   - component: {fileID: 8843433078993237366}
-  - component: {fileID: 2651818015597459208}
+  - component: {fileID: 1703127818740905404}
   - component: {fileID: 8843433078993237365}
   - component: {fileID: 8843433078993237364}
   - component: {fileID: 2677277248997248632}
@@ -87,7 +87,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!70 &2651818015597459208
+--- !u!70 &1703127818740905404
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -100,8 +100,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.25417423}
-  m_Size: {x: 0.5, y: 1.5083485}
+  m_Offset: {x: 0, y: -0.2698989}
+  m_Size: {x: 0.5, y: 1.5397978}
   m_Direction: 0
 --- !u!95 &8843433078993237365
 Animator:
@@ -135,6 +135,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  jumpParticles: {fileID: 8981840918955106190, guid: 1ae9f74f32455694193fda9979d3c643,
+    type: 3}
   jumpSpeed: 6
   jumpHeigt: 500
   fallGravity: 3

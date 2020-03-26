@@ -11,6 +11,10 @@ public class ButtonFunctions : MonoBehaviour {
 
     [SerializeField] PlayerStats playerStats = default;
     [SerializeField] ShopStatistics shopStatistics = default;
+    [SerializeField] GameObject pauseScreen = default;
+    [SerializeField] TextMeshProUGUI healthText = default;
+    [SerializeField] TextMeshProUGUI meeleDmgText = default;
+    [SerializeField] TextMeshProUGUI arrowDmgText = default;
 
     [SerializeField] TextMeshProUGUI coinText = default;
     int coins = 0;
@@ -18,6 +22,9 @@ public class ButtonFunctions : MonoBehaviour {
     [SerializeField] TextMeshProUGUI arrowText = default;
     int maxArrows = 3;
     int currentArrow = 0;
+
+    bool dead = false;
+    float lastTimeScale = 0f;
 
     void Start() {
         GameEvents.PlayerDead.AddListener(OnPlayerDead);
@@ -30,10 +37,30 @@ public class ButtonFunctions : MonoBehaviour {
 
         coins = playerStats.money;
         coinText.text = coins.ToString();
-        
+
+
+        PlayerPrefs.SetInt("maxHealth", playerStats.maxHealth);
+        PlayerPrefs.SetInt("maxMunition", playerStats.maxMunition);
+        PlayerPrefs.SetInt("meleeDamage", playerStats.meleeDamage);
+        PlayerPrefs.SetInt("money", playerStats.money);
+        PlayerPrefs.SetInt("munition", playerStats.munition);
+        PlayerPrefs.SetInt("rangedDamage", playerStats.rangedDamage);
+
+        PlayerPrefs.SetInt("maxHealthUpgradeCount", shopStatistics.maxHealthUpgradeCount);
+        PlayerPrefs.SetInt("maxMunitionUpgradeCount", shopStatistics.maxMunitionUpgradeCount);
+        PlayerPrefs.SetInt("meleeDamageUpgradeCount", shopStatistics.meleeDamageUpgradeCount);
+        PlayerPrefs.SetInt("munitionUpgradeCount", shopStatistics.munitionUpgradeCount);
+        PlayerPrefs.SetInt("rangedDamageUpgradeCount", shopStatistics.rangedDamageUpgradeCount);
+
+    }
+    private void Update() {
+        if (Input.GetButtonDown("Cancel") && !dead) {
+            EnablePauseScreen();
+        }
     }
 
     void OnPlayerDead() {
+        dead = true;
         Invoke("EnableGameOver", 2f);
     }
 
@@ -59,8 +86,23 @@ public class ButtonFunctions : MonoBehaviour {
     }
 
     public void RestartScene() {
+        Time.timeScale = 1f;
         SceneManager.LoadScene("Base");
     }
 
+    public void GoToMainMenu() {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(0);
+    }
+
+    void EnablePauseScreen() {
+        pauseScreen.SetActive(!pauseScreen.activeSelf);
+        float x = Time.timeScale;
+        Time.timeScale = lastTimeScale;
+        lastTimeScale = x;
+        healthText.text = " = " + shopStatistics.maxHealthUpgradeCount.ToString();
+        meeleDmgText.text = " = " + shopStatistics.meleeDamageUpgradeCount.ToString();
+        arrowDmgText.text = " = " + shopStatistics.rangedDamageUpgradeCount.ToString();
+    }
     
 }

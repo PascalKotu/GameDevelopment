@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e29c0aa07a83bc247b09c6069d108274, type: 3}
   m_Name: Player Stats
   m_EditorClassIdentifier: 
-  money: 0
-  meleeDamage: 1
+  money: 1
+  meleeDamage: 2
   rangedDamage: 2
   maxHealth: 5
   munition: 0

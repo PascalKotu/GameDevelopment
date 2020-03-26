@@ -25,8 +25,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2138275451472586231}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.3, y: 7.4, z: 0}
-  m_LocalScale: {x: 0.36020008, y: 1.1359041, z: 1}
+  m_LocalPosition: {x: 1.68, y: 6.04, z: 0}
+  m_LocalScale: {x: 5.183029, y: 13.465671, z: 0.903}
   m_Children:
   - {fileID: 3204581670048565563}
   m_Father: {fileID: 7563006493312338384}
@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 8125063923613605644}
   - component: {fileID: 3816823237245253142}
   - component: {fileID: 7702280652271100382}
+  - component: {fileID: 3959638742026843027}
   m_Layer: 0
   m_Name: Trader
   m_TagString: Trader
@@ -204,9 +205,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9fea4239f460354d8307cef4b999e50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerStats: {fileID: 0}
+  shopStatistics: {fileID: 0}
   shop: {fileID: 6994606977650274234, guid: 1df584d3bbfced342bd45c71290b33be, type: 3}
-  effectsManager: {fileID: 0}
   shopOpenSFX: {fileID: 8300000, guid: 6358e442290b7214d944e17b4b6e4120, type: 3}
+--- !u!95 &3959638742026843027
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2941763145610916322}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a2ca32fe428412e4fb1c396b2659262f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4363693967251450419
 GameObject:
   m_ObjectHideFlags: 0
@@ -232,16 +253,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4363693967251450419}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2461737, y: 0.9375, z: 1}
+  m_LocalScale: {x: 0.08660416, y: 0.07908332, z: 1.1074196}
   m_Children: []
   m_Father: {fileID: 8722776976739977206}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 4.4, y: 0}
+  m_AnchoredPosition: {x: 0.3636639, y: -0.19308376}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3141422385414499441

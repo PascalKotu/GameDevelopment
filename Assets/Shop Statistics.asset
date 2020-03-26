@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f039ad3b056625d4eb3e361456ad40c6, type: 3}
   m_Name: Shop Statistics
   m_EditorClassIdentifier: 
-  meleeDamageUpgradeCount: 0
+  meleeDamageUpgradeCount: 1
   rangedDamageUpgradeCount: 0
   maxHealthUpgradeCount: 0
   munitionUpgradeCount: 0

@@ -1,21 +1,9 @@
 fileFormatVersion: 2
-guid: 8a1f816ecc968e14ab28e79369bedf9e
+guid: 838439ef177bcfd45abda32d24b2e9d3
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: 4265933498905476162
-    second: fire-skull-no-fire_0
-  - first:
-      213: 8060429734703826689
-    second: fire-skull-no-fire_1
-  - first:
-      213: 9191577790561809290
-    second: fire-skull-no-fire_2
-  - first:
-      213: 675667014268093879
-    second: fire-skull-no-fire_3
+  internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -52,13 +40,13 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 16
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteBorder: {x: 2, y: 3, z: 2, w: 2}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -69,6 +57,7 @@ TextureImporter:
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  applyGammaDecoding: 0
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -120,91 +109,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: fire-skull-no-fire_0
-      rect:
-        serializedVersion: 2
-        x: 7
-        y: 3
-        width: 40
-        height: 55
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 24c33b55ae3a33b30800000000000000
-      internalID: 4265933498905476162
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: fire-skull-no-fire_1
-      rect:
-        serializedVersion: 2
-        x: 61
-        y: 6
-        width: 41
-        height: 52
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 107840243266cdf60800000000000000
-      internalID: 8060429734703826689
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: fire-skull-no-fire_2
-      rect:
-        serializedVersion: 2
-        x: 116
-        y: 5
-        width: 39
-        height: 54
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a837ecb2d4b0f8f70800000000000000
-      internalID: 9191577790561809290
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: fire-skull-no-fire_3
-      rect:
-        serializedVersion: 2
-        x: 169
-        y: 6
-        width: 41
-        height: 52
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7b506e3d193706900800000000000000
-      internalID: 675667014268093879
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
