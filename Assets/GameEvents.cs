@@ -16,6 +16,7 @@ public static class GameEvents {
     public static IntEvent ChangeMoney = new IntEvent();
     public static IntEvent ChangeMunition = new IntEvent();
     public static UnityEvent BossStart = new UnityEvent();
+    public static UnityEvent BossNextPhase = new UnityEvent();
 }   
    
 public class HitEvent : UnityEvent<HitData> { }

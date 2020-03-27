@@ -3,16 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ParallaxEffect : MonoBehaviour {
-    private float startpos = default;
-    private float length = default;
+    float startpos = default;
+    [SerializeField] float length = 0f;
     [SerializeField] float parallaxEffect = 1f;
-    // Start is called before the first frame update
+
     void Start() {
         startpos = transform.position.x;
-        length = GetComponent<SpriteRenderer>().bounds.size.x;
+        if(length == 0f) {
+            length = GetComponent<SpriteRenderer>().bounds.size.x;
+        }
     }
 
-    // Update is called once per frame
+
     void FixedUpdate() {
         float temp = (Camera.main.transform.position.x * (1 - parallaxEffect));
         float dist = (Camera.main.transform.position.x *  parallaxEffect);

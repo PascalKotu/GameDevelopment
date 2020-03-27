@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class TraderScript : MonoBehaviour
 {
-
-    [SerializeField] PlayerStats playerStats = default;
-    [SerializeField] ShopStatistics shopStatistics = default;
+    
     [SerializeField] GameObject shop = default;
     [SerializeField] AudioClip shopOpenSFX = default;
     GameObject speechBubble = default;
-    bool showSpeechBubble = false, interactable = false;
+    bool interactable = false;
     
     // Start is called before the first frame update
     void Start()

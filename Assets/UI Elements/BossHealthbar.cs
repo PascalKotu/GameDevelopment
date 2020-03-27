@@ -11,7 +11,7 @@ public class BossHealthbar : MonoBehaviour {
     [SerializeField] TextMeshProUGUI bossName = default;
 
     [SerializeField] AudioClip winMusic = default;
-
+    bool phase1 = true;
 
     int bossMaxLife = 0;
     int bossCurrentLife = 0;
@@ -35,6 +35,10 @@ public class BossHealthbar : MonoBehaviour {
     void BossDMG(HitData hitted) {
         if (hitted.hitted == boss) {
             bossCurrentLife -= hitted.dmg;
+            if(phase1 && bossCurrentLife <= bossMaxLife / 2) {
+                GameEvents.BossNextPhase.Invoke();
+            }
+
             if (bossCurrentLife <= 0) {
                 portal.SetActive(true);
                 GameEvents.PlayMusic.Invoke(new AudioEventData(winMusic, 1f));

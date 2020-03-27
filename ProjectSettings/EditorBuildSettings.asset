@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Base.unity
     guid: cd48af06239b3d440a69db33e835296b
   - enabled: 1
-    path: Assets/Scenes/Level1-TheGraveyard.unity
+    path: Assets/Scenes/Level1.unity
     guid: d40c7a24e6e5d1045aa4a81e427a81c1
+  - enabled: 1
+    path: Assets/Scenes/Level2.unity
+    guid: fd12e86e4b2555e43a8a0e0aa1acdc8e
   m_configObjects: {}

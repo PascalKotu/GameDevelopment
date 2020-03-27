@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3811909241608383670}
   - component: {fileID: 3288649788281359994}
-  - component: {fileID: 2978201119777656921}
   - component: {fileID: 7038050386002248569}
   - component: {fileID: 7529365622408990116}
+  - component: {fileID: 5216910765713449048}
   m_Layer: 11
   m_Name: FireBall
   m_TagString: EnemyWeapon
@@ -54,27 +54,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!50 &2978201119777656921
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5672796595060654099}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!61 &7038050386002248569
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -113,6 +92,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5e98dadc9e9d4e40a7fa7c46dda00b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 7
+  dmg: 2
+--- !u!50 &5216910765713449048
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5672796595060654099}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &8811128632798659568
 GameObject:
   m_ObjectHideFlags: 0
