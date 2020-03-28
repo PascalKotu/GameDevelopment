@@ -55,7 +55,7 @@ public class ShopScript : MonoBehaviour
     {
         if (PayUpgrade(baseCostRange, shopStats.rangedDamageUpgradeCount))
         {
-            playerStats.rangedDamage ++;
+            playerStats.rangedDamage += 2;
             shopStats.rangedDamageUpgradeCount++;
 
             CalcNewCosts();

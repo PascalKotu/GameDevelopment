@@ -251,7 +251,7 @@ MonoBehaviour:
   target: {fileID: 0}
   range: 15
   speed: 5
-  dmg: 12
+  dmg: 8
   timeBetweenAttacks: 1
   dmgCollider: {fileID: 229279281859929279}
   knockBackRange: 500

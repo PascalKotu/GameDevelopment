@@ -114,7 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0fa6328250cd534e8e45909c2762c4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 75
+  maxHp: 150
   volumeHit: 0.5
   despawnEffect: {fileID: 6340091531510408377, guid: 899c99ea2c859c643b136e904fde1866,
     type: 3}

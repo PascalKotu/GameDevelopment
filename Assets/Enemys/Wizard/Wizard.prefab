@@ -287,7 +287,7 @@ MonoBehaviour:
   knockBackRange: 500
   attackRange: 15
   timeBetweenAttacks: 2
-  dmg: 8
+  dmg: 10
   attack:
   - {fileID: 8300000, guid: 869df7727c2adcb44bea7b98cef414e2, type: 3}
   - {fileID: 8300000, guid: fcef63b386a165b4bb04ea775ecda224, type: 3}
