@@ -43,7 +43,7 @@ public class MainMenuScript : MonoBehaviour {
         shopStatistics.munitionUpgradeCount = 0;
         shopStatistics.rangedDamageUpgradeCount = 0;
 
-        SceneManager.LoadScene("Base");
+        SceneManager.LoadScene(4);
 
     }
 

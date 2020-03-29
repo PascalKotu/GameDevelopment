@@ -33,7 +33,7 @@ public class ShopScript : MonoBehaviour
     {
         if(PayUpgrade(baseCostHealth, shopStats.maxHealthUpgradeCount))
         {
-            playerStats.maxHealth += 2;
+            playerStats.maxHealth += 3;
             shopStats.maxHealthUpgradeCount++;
 
             CalcNewCosts();
@@ -44,7 +44,7 @@ public class ShopScript : MonoBehaviour
     {
         if (PayUpgrade(baseCostMelee, shopStats.meleeDamageUpgradeCount))
         {
-            playerStats.meleeDamage ++;
+            playerStats.meleeDamage +=2;
             shopStats.meleeDamageUpgradeCount++;
 
             CalcNewCosts();
@@ -55,7 +55,7 @@ public class ShopScript : MonoBehaviour
     {
         if (PayUpgrade(baseCostRange, shopStats.rangedDamageUpgradeCount))
         {
-            playerStats.rangedDamage += 2;
+            playerStats.rangedDamage += 3;
             shopStats.rangedDamageUpgradeCount++;
 
             CalcNewCosts();

@@ -9,4 +9,5 @@ public class PlayerStats : ScriptableObject
     public int meleeDamage, rangedDamage;
     public int maxHealth;
     public int munition, maxMunition;
+    public float speed;
 }
