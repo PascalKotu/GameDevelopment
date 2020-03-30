@@ -30,19 +30,6 @@ public class MainMenuScript : MonoBehaviour {
         PlayerPrefs.DeleteAll();
         PlayerPrefs.SetInt("GameStarted", 1);
 
-        playerStats.maxHealth = 5;
-        playerStats.maxMunition = 3;
-        playerStats.meleeDamage = 1;
-        playerStats.money = 0;
-        playerStats.munition = 0;
-        playerStats.rangedDamage = 2;
-
-        shopStatistics.maxHealthUpgradeCount = 0;
-        shopStatistics.maxMunitionUpgradeCount = 0;
-        shopStatistics.meleeDamageUpgradeCount = 0;
-        shopStatistics.munitionUpgradeCount = 0;
-        shopStatistics.rangedDamageUpgradeCount = 0;
-
         SceneManager.LoadScene(4);
 
     }
